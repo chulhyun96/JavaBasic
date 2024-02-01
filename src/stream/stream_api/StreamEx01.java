@@ -1,4 +1,4 @@
-package stream.stream_api1;
+package stream.stream_api;
 
 import java.util.ArrayList;
 import java.util.List;
