@@ -21,12 +21,5 @@ public class StreamEx01 {
         collect.forEach(System.out::println);
 
 
-        for (String name : names) {
-            if(name.startsWith("j")) {
-                System.out.println(name.toUpperCase());
-            }
-        }
-
-
     }
 }

@@ -2,7 +2,6 @@ package stream.stream_api;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -24,9 +23,9 @@ public class App {
 
         System.out.println("spring 으로 시작하는 수업");
         // TODO
-         springClasses.stream()
+        List<OnlineClass> spring = springClasses.stream()
                 .filter(oc -> oc.getTitle().startsWith("spring"))
-                        .forEach(System.out::println);
+                        .toList();
 
 
         System.out.println("close 되지 않은 수업");
