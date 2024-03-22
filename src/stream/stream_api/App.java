@@ -2,6 +2,8 @@ package stream.stream_api;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -21,31 +23,73 @@ public class App {
         keesunEvents.add(springClasses);
         keesunEvents.add(javaClasses);
 
-        System.out.println("spring 으로 시작하는 수업");
+        System.out.println("-------spring 으로 시작하는 수업---------------");
         // TODO
         List<OnlineClass> spring = springClasses.stream()
                 .filter(oc -> oc.getTitle().startsWith("spring"))
                         .toList();
+        for (OnlineClass onlineClass : spring) {
+            System.out.println(onlineClass.getTitle());
+        }
+        System.out.println("----------------------------------------------");
 
-
-        System.out.println("close 되지 않은 수업");
+        System.out.println("-----------------close 되지 않은 수업----------------");
         // TODO
+        List<OnlineClass> notClosedClassesAboutSpring = springClasses.stream()
+                .filter(oc -> !oc.isClosed())
+                .toList();
+        for (OnlineClass notClosedClass : notClosedClassesAboutSpring) {
+            System.out.println("isNotClosedSpring = " + notClosedClass.getTitle());
+        }
+        List<OnlineClass> notClosedClassesAboutJava = javaClasses.stream()
+                .filter(jc -> !jc.isClosed())
+                .toList();
+        for (OnlineClass onlineClass : notClosedClassesAboutJava) {
+            System.out.println("isNotClosedJava = "  + onlineClass.getTitle());
+        }
+        System.out.println("----------------------------------------------");
 
-        System.out.println("수업 이름만 모아서 스트림 만들기");
+        System.out.println("--------------------수업 이름만 모아서 스트림 만들기------------------");
         // TODO
-
-
+        List<String> springClassesNames = springClasses.stream()
+                .map(OnlineClass::getTitle)
+                .toList();
+        for (String springClassesName : springClassesNames) {
+            System.out.println("springClassesNames = " + springClassesName);
+        }
+        List<String> javaClassesNames = javaClasses.stream()
+                .map(OnlineClass::getTitle)
+                .toList();
+        for (String javaClassesName : javaClassesNames) {
+            System.out.println("javaClassesNames = " + javaClassesName);
+        }
+        System.out.println("----------------------------------------------");
         System.out.println("두 수업 목록에 들어있는 모든 수업 아이디 출력");
         // TODO
+
 
         System.out.println("10부터 1씩 증가하는 무제한 스트림 중에서 앞에 10개 빼고 최대 10개 까지만");
         // TODO
 
-        System.out.println("자바 수업 중에 Test가 들어있는 수업이 있는지 확인");
+        System.out.println("--------------------------자바 수업 중에 Test가 들어있는 수업이 있는지 확인--------------------------");
         // TODO
+        /*boolean test = javaClasses.stream()
+                .filter(jc -> jc.getTitle().contains("Test"))
+                        .allMatch(javaClasses.stream());*/
 
-        System.out.println("스프링 수업 중에 제목에 spring이 들어간 것만 모아서 List로 만들기");
+        System.out.println("----------------------------------------------");
+
+
+        System.out.println("-------------------스프링 수업 중에 제목에 spring이 들어간 것만 모아서 List로 만들기-------------------");
         // TODO
+        List<OnlineClass> springNames = springClasses.stream()
+                .filter(sc -> sc.getTitle().contains("spring"))
+                .toList();
+        for (OnlineClass springName : springNames) {
+            System.out.println("springNameList: " + springName);
+        }
+        System.out.println("--------------------------------");
+
     }
 
 }
