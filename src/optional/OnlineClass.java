@@ -1,9 +1,19 @@
 package optional;
 
+import java.util.Optional;
+
 public class OnlineClass {
     private Integer id;
     private String title;
     private boolean closed;
+    private Progress progress;
+
+    public Optional<Progress> getProgress() {
+        return Optional.ofNullable(progress);
+    }
+
+
+
     public OnlineClass(Integer id, String title, boolean closed) {
         this.id = id;
         this.title = title;
