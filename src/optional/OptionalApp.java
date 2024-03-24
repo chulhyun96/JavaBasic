@@ -1,10 +1,11 @@
 package optional;
 
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
+
 
 public class OptionalApp {
     public static void main(String[] args) {
@@ -18,19 +19,14 @@ public class OptionalApp {
         Optional<OnlineClass> spring = springClasses.stream()
                 .filter(c -> c.getTitle().startsWith("spring"))
                 .findFirst();
+        Optional<Integer> optionalInteger = spring.map(OnlineClass::getId);
+        System.out.println(optionalInteger.isPresent());
 
-        /*boolean empty = spring.isPresent();
-        System.out.println("empty = " + empty);
-        */
-
-        spring.ifPresent(oc -> System.out.println("title = " + oc.getTitle()));
-
-        OnlineClass onlineClass = spring.orElseThrow();
-        System.out.println(onlineClass.getTitle());
+        Optional<Progress> progress = spring.flatMap(OnlineClass::getProgress);
     }
 
     private static OnlineClass createNewClass() {
         System.out.println("OptionalApp.createNewClass");
-        return new OnlineClass(10,"JPA release", false);
+        return new OnlineClass(10, "JPA release", false);
     }
 }
